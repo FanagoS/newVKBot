@@ -28,7 +28,6 @@ six==1.14.0
 soupsieve==2.2.1
 typing-extensions==3.10.0.0
 urllib3==1.25.9
-vbml==1.1
 vk-api==11.8.0
 vkbottle==3.0.2
 vkbottle-types==5.131
