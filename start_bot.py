@@ -247,9 +247,11 @@ class GameRom():
         for i in range(colRodSvaz):
             rand1 = -1
             rand2 = -1
-            while rand1 == rand2:
+            xx = 0
+            while rand1 == rand2 or xx != 100:
                 rand1 = random.choice(self.user)
                 rand2 = random.choice(self.user)
+                xx += 1
             self.RodSvaz.append([rand1, rand2, self.РодственныеСвязи.pop(random.randint(0, len(self.РодственныеСвязи) - 1))])
 
     def getNewHar(self, text):
@@ -331,9 +333,11 @@ def create_cards_count(count, user_id):
     for i in range(ColRodSvaz):
         rand1 = -1
         rand2 = -1
-        while rand1 == rand2:
+        xx = 0
+        while rand1 == rand2 or xx != 100:
             rand1 = random.randint(0,count - 1)
             rand2 = random.randint(0,count - 1)
+            xx += 1
         RodSvaz.append([rand1, rand2,
                              РодственныеСвязи.pop(random.randint(0, len(РодственныеСвязи) - 1))])
 
