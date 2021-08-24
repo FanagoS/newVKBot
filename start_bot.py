@@ -2,13 +2,10 @@ from plugins import workFiles
 from plugins import auth
 import os
 import  vk_api
-import  pickle
-import  requests
 import random
 from PIL import Image, ImageDraw, ImageFont
 from vk_api.longpoll import  VkLongPoll, VkEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
-from vk_api.utils import get_random_id
 
 get_data = workFiles.loadjson("config.json")
 CardSetting = workFiles.loadjson("CardSetting.json")
@@ -171,7 +168,7 @@ class GameRom():
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype("arial.ttf", size=22)
+        font = ImageFont.truetype('font\CartonsixNC.ttf', size=22)
         propysk = 30
         dopPropysk = 0
         if self.Комнат > 3:
@@ -351,7 +348,7 @@ def create_cards_count(count, user_id):
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype("arial.ttf", size=22)
+        font = ImageFont.truetype('font\CartonsixNC.ttf', size=22)
         propysk = 30
         dopPropysk = 0
         if Комнат > 3:
