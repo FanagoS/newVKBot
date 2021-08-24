@@ -29,8 +29,6 @@ soupsieve==2.2.1
 typing-extensions==3.10.0.0
 urllib3==1.25.9
 vk-api==11.8.0
-vkbottle==3.0.2
-vkbottle-types==5.131
 watchgod==0.7
 yarl==1.4.2
 zeep==3.4.0
