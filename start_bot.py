@@ -1,8 +1,10 @@
 from plugins import workFiles
 from plugins import auth
 import os
-import  vk_api
+import vk_api
+import io
 import random
+import requests
 from PIL import Image, ImageDraw, ImageFont
 from vk_api.longpoll import  VkLongPoll, VkEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
@@ -168,7 +170,8 @@ class GameRom():
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype('font\CartonsixNC.ttf', size=22)
+        font = ImageFont.truetype(r'font\CartonsixNC.ttf', size=22)
+
         propysk = 30
         dopPropysk = 0
         if self.Комнат > 3:
@@ -245,13 +248,8 @@ class GameRom():
     def createUserRodSvaz(self):
         colRodSvaz = random.randint(0,2)
         for i in range(colRodSvaz):
-            rand1 = -1
-            rand2 = -1
-            xx = 0
-            while rand1 == rand2 or xx != 100:
-                rand1 = random.choice(self.user)
-                rand2 = random.choice(self.user)
-                xx += 1
+            rand1 = random.choice(self.user)
+            rand2 = random.choice(self.user)
             self.RodSvaz.append([rand1, rand2, self.РодственныеСвязи.pop(random.randint(0, len(self.РодственныеСвязи) - 1))])
 
     def getNewHar(self, text):
@@ -331,13 +329,10 @@ def create_cards_count(count, user_id):
     RodSvaz = []
     ColRodSvaz = random.randint(0,2)
     for i in range(ColRodSvaz):
-        rand1 = -1
-        rand2 = -1
-        xx = 0
-        while rand1 == rand2 or xx != 100:
-            rand1 = random.randint(0,count - 1)
-            rand2 = random.randint(0,count - 1)
-            xx += 1
+
+        rand1 = random.randint(0,count - 1)
+        rand2 = random.randint(0,count - 1)
+
         RodSvaz.append([rand1, rand2,
                              РодственныеСвязи.pop(random.randint(0, len(РодственныеСвязи) - 1))])
 
@@ -352,7 +347,7 @@ def create_cards_count(count, user_id):
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype('font\CartonsixNC.ttf', size=22)
+        font = ImageFont.truetype(r'font\CartonsixNC.ttf', size=22)
         propysk = 30
         dopPropysk = 0
         if Комнат > 3:
@@ -514,7 +509,13 @@ for event in longPool.listen():
             room_id = USER_Date["Room_id"]
 
             if (msg == "начать" and status == "0"):
-                sender(id, "Привет! Зайди в свободную комнату или создай свою для игры\n Или просто сгенерируй карты", get_keyboard(msg))
+                sender(id, "Привет! Зайди в свободную комнату или создай свою для игры\n Или просто сгенерируй карты", get_keyboard("начать"))
+                continue
+
+            if (msg == "сброс"):
+                set_status_userData(USER_Date, "СтартовоеМеню")
+                sender(id, "Привет! Зайди в свободную комнату или создай свою для игры\n Или просто сгенерируй карты", get_keyboard("начать"))
+                continue
 
             elif status == "МеняетХарактеристику":
                 for i in ROOM:
@@ -525,10 +526,10 @@ for event in longPool.listen():
 
             elif status == "СоздаетКарты":
                 USER_Date = set_status_userData(USER_Date, "СтартовоеМеню")
-                try:
-                    create_cards_count(int(msg), id)
-                except:
-                    sender(id, "Ошибка: в след. раз вводите число", get_keyboard("начать"))
+                #try:
+                create_cards_count(int(msg), id)
+                #except:
+                #    sender(id, "Ошибка: в след. раз вводите число", get_keyboard("начать"))
 
             elif msg == "заменить характеристику" and status == "ВКомнатеХост":
                 USER_Date = set_status_userData(USER_Date, "МеняетХарактеристику")
