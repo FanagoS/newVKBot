@@ -170,7 +170,7 @@ class GameRom():
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype(r'font\CartonsixNC.ttf', size=22)
+        font = ImageFont.truetype('arial.ttf', size=22)
 
         propysk = 30
         dopPropysk = 0
@@ -347,7 +347,7 @@ def create_cards_count(count, user_id):
 
         tatras = Image.open("pich/cardjpg.jpg")
         idraw = ImageDraw.Draw(tatras)
-        font = ImageFont.truetype(r'font\CartonsixNC.ttf', size=22)
+        font = ImageFont.truetype('arial.ttf', size=22)
         propysk = 30
         dopPropysk = 0
         if Комнат > 3:
